@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons {
+    display: flex;
+}
+
+.right-side {
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.right-side {
+    display: flex;
+    flex-direction: column;
+}
+
+.left-side {
+    display: flex;
+    flex-direction: column;
+}
+
+#clear {
+    flex: 1;
+}
