@@ -1,4 +1,5 @@
-let displayValue = 0;
+let displayValue = "0";
+let currentButton = "0";
 
 function add(numOne, numTwo) {
     return numOne + numTwo;
@@ -27,3 +28,23 @@ function operate(numOne, operator, numTwo) {
         return divide(numOne, numTwo);
     }
 }
+
+function initializeButtons() {
+    let buttons = document.querySelectorAll(".button-column button");
+    buttons.forEach((btn) => {
+        btn.addEventListener("click", function() {
+            if (displayValue === "0") {
+                displayValue = btn.textContent;
+            } else if (displayValue.length <= 7) {
+                displayValue += btn.textContent;
+            }
+            document.getElementById("display-content").textContent = displayValue;
+        });
+    });
+    document.getElementById("clear").addEventListener("click", function() {
+        displayValue = "0";
+        document.getElementById("display-content").textContent = displayValue;
+    });
+}
+
+initializeButtons();
