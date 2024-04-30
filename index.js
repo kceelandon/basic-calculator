@@ -1,4 +1,4 @@
-let displayValue
+let displayValue = 0;
 
 function add(numOne, numTwo) {
     return numOne + numTwo;
