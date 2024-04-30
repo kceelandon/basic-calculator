@@ -29,6 +29,7 @@ function operate(numOne, operator, numTwo) {
     }
 }
 
+// initializes number and clear button functionality to populate display.
 function initializeButtons() {
     let buttons = document.querySelectorAll(".button-column button");
     buttons.forEach((btn) => {
