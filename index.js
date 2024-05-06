@@ -48,6 +48,10 @@ function initializeNumButtons() {
             document.getElementById("display-content").textContent = displayValue;
         });
     });
+    clearCalculator();
+}
+
+function clearCalculator() {
     document.getElementById("clear").addEventListener("click", function() {
         displayValue = "0";
         currentOperator = null;
@@ -92,5 +96,9 @@ function initializeDivide() {
             currentOperator = "/";
         }
     });
+}
+
+function initializeEquals() {
+
 }
 initializeNumButtons();
