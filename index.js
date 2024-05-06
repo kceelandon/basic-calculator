@@ -51,6 +51,8 @@ function initializeNumButtons() {
     document.getElementById("clear").addEventListener("click", function() {
         displayValue = "0";
         currentOperator = null;
+        firstNum = 0;
+        secondNum = null;
         document.getElementById("display-content").textContent = displayValue;
     });
 }
