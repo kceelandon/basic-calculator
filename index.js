@@ -40,10 +40,20 @@ function initializeNumButtons() {
     let buttons = document.querySelectorAll(".button-column button, #zero");
     buttons.forEach((btn) => {
         btn.addEventListener("click", function() {
-            if (displayValue === "0") {
-                displayValue = btn.textContent;
-            } else if (displayValue.length <= 7) {
-                displayValue += btn.textContent;
+            // first case: second part of an equation
+            if (currentOperator !== null) {
+                displayValue = "0";
+                if (displayValue === "0") {
+                    displayValue = btn.textContent;
+                } else if (displayValue.length <= 7) {
+                    displayValue += btn.textContent;
+                }
+            } else {  // second case: no operator has been clicked
+                if (displayValue === "0") {
+                    displayValue = btn.textContent;
+                } else if (displayValue.length <= 7) {
+                    displayValue += btn.textContent;
+                }
             }
             document.getElementById("display-content").textContent = displayValue;
         });
@@ -66,41 +76,54 @@ function initializeOperators() {
     initializeSubtract();
     initializeMultiply();
     initializeDivide();
+    initializeEquals();
 }
 
 function initializeAdd() {
     document.getElementById("add").addEventListener("click", function() {
-        if (firstNum !== null) {
-            currentOperator = "+";
-        }
+        firstNum = parseInt(displayValue);
+        currentOperator = "+";
     });
 }
 
 function initializeSubtract() {
     document.getElementById("subtract").addEventListener("click", function () {
-        if (firstNum !== null) {
-            currentOperator = "-";
-        }
+        firstNum = parseInt(displayValue);
+        currentOperator = "-";
     });
 }
 
 function initializeMultiply() {
     document.getElementById("multiply").addEventListener("click", function () {
-        if (firstNum !== null) {
-            currentOperator = "*";
-        }
+        firstNum = parseInt(displayValue);
+        currentOperator = "*";
     });
 }
 
 function initializeDivide() {
     document.getElementById("divide").addEventListener("click", function () {
-        if (firstNum !== null) {
-            currentOperator = "/";
-        }
+        firstNum = parseInt(displayValue);
+        currentOperator = "/";
     });
 }
 
 function initializeEquals() {
-
+    document.getElementById("equals").addEventListener("click", function () {
+        secondNum = parseInt(displayValue);
+        if (firstNum !== null && secondNum !== null && currentOperator !== null) {
+            let result = operate(firstNum, currentOperator, secondNum);
+            if (result !== null) {
+                displayValue = result.toString();
+                firstNum = result;
+                secondNum = null;
+                currentOperator = null;
+            } else {
+                clearCalculator();
+            }
+            document.getElementById("display-content").textContent = displayValue;
+        }
+    });
 }
+
 initializeNumButtons();
+initializeOperators();
